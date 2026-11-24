@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nexus - Asylum Life Title Guide</title>
+  <style>
+    /* Базовые настройки */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Анимированный фон с узорами */
+    body {
+      background-color: #0f0f1b;
+      background-image: 
+        radial-gradient(circle at 10% 20%, rgba(130, 80, 255, 0.15) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 200, 255, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 50% 50%, rgba(229, 46, 113, 0.08) 0%, transparent 50%),
+        linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.01) 0px, rgba(255,255,255,0.01) 2px, transparent 2px, transparent 20px);
+      background-size: 100% 100%, 100% 100%, 100% 100%, 40px 40px, 40px 40px, 120px 120px;
+      background-attachment: fixed;
+      color: #e2e8f0;
+      padding: 60px 15px;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* Дополнительные плавающие узоры на фоне */
+    body::before {
+      content: "";
+      position: fixed;
+      top: -10%; left: -10%;
+      width: 120%; height: 120%;
+      background: 
+        radial-gradient(circle at 20% 30%, rgba(167, 139, 250, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 80% 70%, rgba(255, 138, 0, 0.05) 0%, transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(0, 200, 255, 0.05) 0%, transparent 25%);
+      pointer-events: none;
+      z-index: 0;
+      animation: pulse 10s infinite alternate;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 0.5; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.05); }
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Шапка */
+    header {
+      background: linear-gradient(135deg, rgba(45, 27, 105, 0.9) 0%, rgba(17, 153, 142, 0.9) 100%);
+      padding: 50px 30px;
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 2px 4px rgba(255,255,255,0.15);
+      text-align: center;
+      margin-bottom: 50px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+
+    header::before {
+      content: "";
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background-image: 
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.04) 0px, rgba(255,255,255,0.04) 1px, transparent 1px, transparent 10px),
+        repeating-linear-gradient(-45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 10px);
+      pointer-events: none;
+      animation: rotate 30s linear infinite;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    h1 {
+      color: #ffffff;
+      margin-bottom: 15px;
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      position: relative;
+      z-index: 1;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Цветная анимированная подсветка для подзаголовка */
+    .subtitle {
+      color: #ffffff;
+      margin-bottom: 0;
+      font-size: 1.1rem;
+      position: relative;
+      z-index: 1;
+      letter-spacing: 0.5px;
+      font-weight: 500;
+      background: linear-gradient(90deg, #fff, #a78bfa, #00c8ff, #ff8a00, #fff);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgb-text-flow 6s linear infinite;
+    }
+
+    @keyframes rgb-text-flow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    /* Название сайта Nexus — фиксировано слева вверху */
+    .brand-title {
+      position: fixed;
+      top: 25px;
+      left: 25px;
+      z-index: 100;
+      font-size: 2rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      
+      /* Зеленый переливающийся градиент */
+      background: linear-gradient(90deg, #00ff87 0%, #60efff 50%, #00ff87 100%);
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: green-flow 3s linear infinite;
+      
+      /* Мягкое свечение */
+      filter: drop-shadow(0 0 10px rgba(0, 255, 135, 0.4));
+      border-left: 3px solid #00ff87;
+      padding-left: 12px;
+    }
+
+    @keyframes green-flow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    /* Блок с пояснением */
+    .title-explainer {
+      background: rgba(25, 22, 60, 0.8);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      padding: 35px 40px;
+      margin-bottom: 50px;
+      border: 1px solid rgba(167, 139, 250, 0.2);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255,255,255,0.05);
+      line-height: 1.8;
+      color: #cbd5e1;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .title-explainer::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(to bottom, #ff8a00, #e52e71);
+    }
+
+    .title-explainer h2 {
+      color: #a78bfa;
+      font-size: 1.4rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-shadow: 0 2px 10px rgba(167, 139, 250, 0.3);
+    }
+
+    .title-explainer p {
+      margin-bottom: 18px;
+      font-size: 1.05rem;
+    }
+
+    .title-explainer p:last-child {
+      margin-bottom: 0;
+    }
+
+    .title-explainer strong {
+      color: #ff8a00;
+      font-weight: 700;
+    }
+
+    /* Кнопка перевода */
+    #translate-btn {
+      position: fixed;
+      top: 25px;
+      right: 25px;
+      z-index: 100;
+      background: linear-gradient(135deg, #ff8a00 0%, #e52e71 100%);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 6px 20px rgba(229, 46, 113, 0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+
+    #translate-btn:hover {
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 10px 30px rgba(229, 46, 113, 0.8);
+      border-color: rgba(255,255,255,0.5);
+    }
+
+    #translate-btn:active {
+      transform: translateY(1px) scale(0.98);
+    }
+
+    /* Карточки */
+    .category {
+      background: rgba(20, 18, 45, 0.85);
+      backdrop-filter: blur(15px);
+      border-radius: 20px;
+      margin-bottom: 30px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+    }
+
+    /* Акцентная полоса слева */
+    .category::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 4px; height: 100%;
+      background: linear-gradient(to bottom, #a78bfa, #11998e);
+      opacity: 0.7;
+      transition: opacity 0.3s, width 0.3s;
+      z-index: 2;
+    }
+
+    /* Узор в углу карточки */
+    .category::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 200px;
+      height: 200px;
+      background-image: 
+        radial-gradient(circle at 100% 100%, rgba(255, 138, 0, 0.08) 0%, transparent 60%),
+        repeating-linear-gradient(45deg, rgba(255,255,255,0.02) 0px, rgba(255,255,255,0.02) 1px, transparent 1px, transparent 15px);
+      pointer-events: none;
+    }
+
+    .category:hover {
+      border-color: rgba(255, 138, 0, 0.4);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 20px rgba(255, 138, 0, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .category:hover::before {
+      opacity: 1;
+      width: 6px;
+    }
+
+    .category-header {
+      padding: 22px 30px;
+      background: linear-gradient(90deg, rgba(45, 27, 105, 0.95) 0%, rgba(17, 153, 142, 0.8) 100%);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      user-select: none;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Узор в заголовке */
+    .category-header::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-image: repeating-linear-gradient(-45deg, rgba(255,255,255,0.03) 0px, rgba(255,255,255,0.03) 2px, transparent 2px, transparent 12px);
+      pointer-events: none;
+    }
+
+    /* RGB Анимация для названий категорий */
+    .category-header h2 {
+      font-size: 1.35rem;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      
+      /* Градиентный текст */
+      background: linear-gradient(90deg, #ffffff, #a78bfa, #00c8ff, #ff8a00, #ffffff);
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: rgb-flow 5s linear infinite;
+    }
+
+    @keyframes rgb-flow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 300% 50%; }
+    }
+
+    .category-header h2::before {
+      content: "◆";
+      color: #ff8a00;
+      font-size: 0.8rem;
+      -webkit-text-fill-color: #ff8a00;
+    }
+
+    .arrow {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.1rem;
+      transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      z-index: 1;
+    }
+
+    .category-header.collapsed .arrow {
+      transform: rotate(-90deg);
+    }
+
+    .table-wrap {
+      padding: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead {
+      background: rgba(0, 0, 0, 0.4);
+    }
+
+    th {
+      text-align: left;
+      padding: 16px 30px;
+      font-weight: 700;
+      color: #a78bfa;
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: relative;
+    }
+
+    td {
+      padding: 18px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      vertical-align: middle;
+      color: #cbd5e1;
+      transition: background 0.2s;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(167, 139, 250, 0.05);
+    }
+
+    .title-name {
+      font-weight: 800;
+      color: #ffffff;
+      font-size: 1.05rem;
+      text-shadow: 0 1px 3px rgba(0,0,0,0.6);
+      position: relative;
+      display: inline-block;
+    }
+
+    .title-name::after {
+      content: "";
+      position: absolute;
+      bottom: -2px; left: 0;
+      width: 0; height: 2px;
+      background: linear-gradient(90deg, #ff8a00, transparent);
+      transition: width 0.3s;
+    }
+
+    tr:hover .title-name::after {
+      width: 100%;
+    }
+
+    /* Стили для вложенных заголовков групп (в таблице Retiring) */
+    .team-group-header td {
+      background: rgba(0, 0, 0, 0.25);
+      color: #a78bfa;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      font-size: 0.85rem;
+      padding: 14px 30px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .team-group-header td::before {
+      content: "➤ ";
+      color: #ff8a00;
+      margin-right: 8px;
+    }
+
+    /* Колонки */
+    th:nth-child(1) { width: 30%; }
+    th:nth-child(2) { width: 70%; }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+      body { padding: 40px 10px; }
+      .table-wrap { overflow-x: auto; }
+      table { min-width: 600px; }
+      h1 { font-size: 1.8rem; }
+      header { padding: 30px 20px; }
+      #translate-btn { top: 20px; right: 20px; padding: 8px 16px; font-size: 0.7rem; }
+      .brand-title { top: 20px; left: 20px; font-size: 1.5rem; padding-left: 8px; }
+      .title-explainer { padding: 25px 20px; }
+      .title-explainer h2 { font-size: 1.2rem; }
+      .category-header { padding: 18px 20px; }
+      th, td { padding: 14px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="brand-title">Nexus</div>
+  <button id="translate-btn">RU</button>
+
+  <div class="container">
+    <header>
+      <h1>Asylum Life Title Guide</h1>
+      <p id="main-subtitle" class="subtitle" data-en="Complete list of titles and how to obtain them." data-ru="Полный список титулов и способов их получения.">Полный список титулов и способов их получения.</p>
+    </header>
+
+    <!-- Пояснение про титулы -->
+    <div class="title-explainer">
+      <h2 id="explainer-title" data-en="What are Titles in Asylum Life?" data-ru="Что такое титулы в Asylum Life?">Что такое титулы в Asylum Life?</h2>
+      <p id="explainer-text-1" data-en="Titles are a type of customizable accessory that appears next to your name in-game. They serve purely as a display of your achievements and do not provide any gameplay advantages or stat boosts. They are entirely cosmetic and allow you to personalize your profile and show off your dedication to the game." data-ru="Титулы — это тип настраиваемых аксессуаров, которые отображаются рядом с вашим именем в игре. Они служат исключительно для демонстрации ваших достижений и не дают никаких игровых преимуществ или прибавок к характеристикам. Они полностью косметические и позволяют персонализировать ваш профиль и показать вашу преданность игре.">Титулы — это тип настраиваемых аксессуаров, которые отображаются рядом с вашим именем в игре. Они служат исключительно для демонстрации ваших достижений и не дают никаких игровых преимуществ или прибавок к характеристикам. Они полностью косметические и позволяют персонализировать ваш профиль и показать вашу преданность игре.</p>
+      <p id="explainer-text-2" data-en="You can obtain titles through various methods: completing specific actions (such as arresting, killing, healing, escaping, cleaning, or painting), completing contracts, winning Fight Club matches, participating in events, purchasing Game Passes, or reaching high levels of Retirement. Retirement titles are special because they are tied to specific teams and can evolve as you retire multiple times on that team." data-ru="Вы можете получать титулы различными способами: выполняя определенные действия (например, аресты, убийства, лечение, побеги, уборка или рисование), выполняя контракты, побеждая в Fight Club, участвуя в событиях, покупая Game Pass или достигая высоких уровней перерождения (Retirement). Титулы за перерождение особенные, так как они привязаны к конкретным командам и могут развиваться по мере того, как вы перерождаетесь несколько раз в этой команде.">Вы можете получать титулы различными способами: выполняя определенные действия (например, аресты, убийства, лечение, побеги, уборка или рисование), выполняя контракты, побеждая в Fight Club, участвуя в событиях, покупая Game Pass или достигая высоких уровней перерождения (Retirement). Титулы за перерождение особенные, так как они привязаны к конкретным командам и могут развиваться по мере того, как вы перерождаетесь несколько раз в этой команде.</p>
+      <p id="explainer-text-3" data-en="To equip a title, open the customization menu (the pink paint brush icon at the top of your screen). You can use titles on any team, unless they are specifically tied to a role. Retirement titles, for example, are only usable on the team where you earned them, but reaching Retirement V unlocks the ability to use them across teams and even customize their color." data-ru="Чтобы надеть титул, откройте меню кастомизации (иконка розовой кисти вверху экрана). Вы можете использовать титулы в любой команде, если они не привязаны к конкретной роли. Титулы за перерождение, например, можно использовать только в той команде, где вы их заработали, но достижение Retirement V открывает возможность использовать их в других командах и даже менять их цвет.">Чтобы надеть титул, откройте меню кастомизации (иконка розовой кисти вверху экрана). Вы можете использовать титулы в любой команде, если они не привязаны к конкретной роли. Титулы за перерождение, например, можно использовать только в той команде, где вы их заработали, но достижение Retirement V открывает возможность использовать их в других командах и даже менять их цвет.</p>
+    </div>
+
+    <!-- 1. Arresting Patients -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Arresting Patients</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Protector</td><td class="desc" data-en="Arrest 100 players." data-ru="Арестовать 100 игроков.">Arrest 100 players.</td></tr>
+            <tr><td class="title-name">Peace Keeper</td><td class="desc" data-en="Arrest 250 players." data-ru="Арестовать 250 игроков.">Arrest 250 players.</td></tr>
+            <tr><td class="title-name">Sentinel</td><td class="desc" data-en="Arrest 500 players." data-ru="Арестовать 500 игроков.">Arrest 500 players.</td></tr>
+            <tr><td class="title-name">Warden</td><td class="desc" data-en="Arrest 1000 players." data-ru="Арестовать 1000 игроков.">Arrest 1000 players.</td></tr>
+            <tr><td class="title-name">Commandant</td><td class="desc" data-en="Arrest 2000 players." data-ru="Арестовать 2000 игроков.">Arrest 2000 players.</td></tr>
+            <tr><td class="title-name">Ironwatch</td><td class="desc" data-en="Arrest 5000 players." data-ru="Арестовать 5000 игроков.">Arrest 5000 players.</td></tr>
+            <tr><td class="title-name">Vigilance</td><td class="desc" data-en="Arrest 10000 players." data-ru="Арестовать 10000 игроков.">Arrest 10000 players.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 2. Killing Players -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Killing Players</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Murder</td><td class="desc" data-en="Kill 250 players." data-ru="Убить 250 игроков.">Kill 250 players.</td></tr>
+            <tr><td class="title-name">Vengeful</td><td class="desc" data-en="Kill 500 players." data-ru="Убить 500 игроков.">Kill 500 players.</td></tr>
+            <tr><td class="title-name">Monstrosity</td><td class="desc" data-en="Kill 1000 players." data-ru="Убить 1000 игроков.">Kill 1000 players.</td></tr>
+            <tr><td class="title-name">Rageful</td><td class="desc" data-en="Kill 2000 players." data-ru="Убить 2000 игроков.">Kill 2000 players.</td></tr>
+            <tr><td class="title-name">Berzerker</td><td class="desc" data-en="Kill 5000 players." data-ru="Убить 5000 игроков.">Kill 5000 players.</td></tr>
+            <tr><td class="title-name">Doombringer</td><td class="desc" data-en="Kill 7000 players." data-ru="Убить 7000 игроков.">Kill 7000 players.</td></tr>
+            <tr><td class="title-name">Armageddon</td><td class="desc" data-en="Kill 10000 players." data-ru="Убить 10000 игроков.">Kill 10000 players.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 3. Healing Players -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Healing Players</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Pocket Medic</td><td class="desc" data-en="Heal 100 players." data-ru="Вылечить 100 игроков.">Heal 100 players.</td></tr>
+            <tr><td class="title-name">Guardian</td><td class="desc" data-en="Heal 250 players." data-ru="Вылечить 250 игроков.">Heal 250 players.</td></tr>
+            <tr><td class="title-name">Reviver</td><td class="desc" data-en="Heal 500 players." data-ru="Вылечить 500 игроков.">Heal 500 players.</td></tr>
+            <tr><td class="title-name">Heroic</td><td class="desc" data-en="Heal 1000 players." data-ru="Вылечить 1000 игроков.">Heal 1000 players.</td></tr>
+            <tr><td class="title-name">Angel</td><td class="desc" data-en="Heal 2000 players." data-ru="Вылечить 2000 игроков.">Heal 2000 players.</td></tr>
+            <tr><td class="title-name">Savior</td><td class="desc" data-en="Heal 5000 players." data-ru="Вылечить 5000 игроков.">Heal 5000 players.</td></tr>
+            <tr><td class="title-name">Salvation</td><td class="desc" data-en="Heal 10000 players." data-ru="Вылечить 10000 игроков.">Heal 10000 players.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 4. Cleaning Spills -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Cleaning Spills</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Janitor</td><td class="desc" data-en="Clean 10 spills." data-ru="Убрать 10 луж.">Clean 10 spills.</td></tr>
+            <tr><td class="title-name">Custodian</td><td class="desc" data-en="Clean 25 spills." data-ru="Убрать 25 луж.">Clean 25 spills.</td></tr>
+            <tr><td class="title-name">Germaphobe</td><td class="desc" data-en="Clean 50 spills." data-ru="Убрать 50 луж.">Clean 50 spills.</td></tr>
+            <tr><td class="title-name">Mop Maestro</td><td class="desc" data-en="Clean 100 spills." data-ru="Убрать 100 луж.">Clean 100 spills.</td></tr>
+            <tr><td class="title-name">Floor Whisperer</td><td class="desc" data-en="Clean 250 spills." data-ru="Убрать 250 луж.">Clean 250 spills.</td></tr>
+            <tr><td class="title-name">Master of the Mop</td><td class="desc" data-en="Clean 500 spills." data-ru="Убрать 500 луж.">Clean 500 spills.</td></tr>
+            <tr><td class="title-name">Deus Ex Mopina</td><td class="desc" data-en="Clean 1000 spills." data-ru="Убрать 1000 луж.">Clean 1000 spills.</td></tr>
+            <tr><td class="title-name">Sultan of Shine</td><td class="desc" data-en="Clean 2500 spills." data-ru="Убрать 2500 луж.">Clean 2500 spills.</td></tr>
+            <tr><td class="title-name">The Mopinator</td><td class="desc" data-en="Clean 5000 spills." data-ru="Убрать 5000 луж.">Clean 5000 spills.</td></tr>
+            <tr><td class="title-name">Ultrasweeper</td><td class="desc" data-en="Clean 10000 spills." data-ru="Убрать 10000 луж.">Clean 10000 spills.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 5. Escaping -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Escaping</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Runaway</td><td class="desc" data-en="Escape for the first time." data-ru="Сбежать впервые.">Escape for the first time.</td></tr>
+            <tr><td class="title-name">Fugitive</td><td class="desc" data-en="Escape 5 times." data-ru="Сбежать 5 раз.">Escape 5 times.</td></tr>
+            <tr><td class="title-name">Outlaw</td><td class="desc" data-en="Escape 10 times." data-ru="Сбежать 10 раз.">Escape 10 times.</td></tr>
+            <tr><td class="title-name">Escapist</td><td class="desc" data-en="Escape 20 times." data-ru="Сбежать 20 раз.">Escape 20 times.</td></tr>
+            <tr><td class="title-name">Eluder</td><td class="desc" data-en="Escape 50 times." data-ru="Сбежать 50 раз.">Escape 50 times.</td></tr>
+            <tr><td class="title-name">Slick</td><td class="desc" data-en="Escape 100 times." data-ru="Сбежать 100 раз.">Escape 100 times.</td></tr>
+            <tr><td class="title-name">Ghost</td><td class="desc" data-en="Escape 250 times." data-ru="Сбежать 250 раз.">Escape 250 times.</td></tr>
+            <tr><td class="title-name">Phantom</td><td class="desc" data-en="Escape 500 times." data-ru="Сбежать 500 раз.">Escape 500 times.</td></tr>
+            <tr><td class="title-name">Houdini</td><td class="desc" data-en="Escape 1000 times." data-ru="Сбежать 1000 раз.">Escape 1000 times.</td></tr>
+            <tr><td class="title-name">Illusionist</td><td class="desc" data-en="Escape 1500 times." data-ru="Сбежать 1500 раз.">Escape 1500 times.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 6. Completing Contracts -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Completing Contracts</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Hitman</td><td class="desc" data-en="Complete 10 contracts." data-ru="Выполнить 10 контрактов.">Complete 10 contracts.</td></tr>
+            <tr><td class="title-name">Killer</td><td class="desc" data-en="Complete 25 contracts." data-ru="Выполнить 25 контрактов.">Complete 25 contracts.</td></tr>
+            <tr><td class="title-name">Assassin</td><td class="desc" data-en="Complete 50 contracts." data-ru="Выполнить 50 контрактов.">Complete 50 contracts.</td></tr>
+            <tr><td class="title-name">Executioner</td><td class="desc" data-en="Complete 200 contracts." data-ru="Выполнить 200 контрактов.">Complete 200 contracts.</td></tr>
+            <tr><td class="title-name">Death Bringer</td><td class="desc" data-en="Complete 500 contracts." data-ru="Выполнить 500 контрактов.">Complete 500 contracts.</td></tr>
+            <tr><td class="title-name">Soul Collector</td><td class="desc" data-en="Complete 1000 contracts." data-ru="Выполнить 1000 контрактов.">Complete 1000 contracts.</td></tr>
+            <tr><td class="title-name">Baba Yaga</td><td class="desc" data-en="Complete 2000 contracts." data-ru="Выполнить 2000 контрактов.">Complete 2000 contracts.</td></tr>
+            <tr><td class="title-name">Inexorable</td><td class="desc" data-en="Complete 5000 contracts." data-ru="Выполнить 5000 контрактов.">Complete 5000 contracts.</td></tr>
+            <tr><td class="title-name">Unyielding</td><td class="desc" data-en="Complete 7000 contracts." data-ru="Выполнить 7000 контрактов.">Complete 7000 contracts.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 7. Fight Club Wins -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Fight Club Wins</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Brawler</td><td class="desc" data-en="Win 50 times in the Fight Club." data-ru="Победить 50 раз в Fight Club.">Win 50 times in the Fight Club.</td></tr>
+            <tr><td class="title-name">Warrior</td><td class="desc" data-en="Win 100 times at the Fight Club." data-ru="Победить 100 раз в Fight Club.">Win 100 times at the Fight Club.</td></tr>
+            <tr><td class="title-name">Duelist</td><td class="desc" data-en="Win 300 times at the Fight Club." data-ru="Победить 300 раз в Fight Club.">Win 300 times at the Fight Club.</td></tr>
+            <tr><td class="title-name">Gladiator</td><td class="desc" data-en="Win 600 times at the Fight Club." data-ru="Победить 600 раз в Fight Club.">Win 600 times at the Fight Club.</td></tr>
+            <tr><td class="title-name">Champion</td><td class="desc" data-en="Win 1200 times at the Fight Club." data-ru="Победить 1200 раз в Fight Club.">Win 1200 times at the Fight Club.</td></tr>
+            <tr><td class="title-name">Unstoppable</td><td class="desc" data-en="Win 2000 times at the Fight Club." data-ru="Победить 2000 раз в Fight Club.">Win 2000 times at the Fight Club.</td></tr>
+            <tr><td class="title-name">Unbeatable</td><td class="desc" data-en="Win 4000 times at the Fight Club." data-ru="Победить 4000 раз в Fight Club.">Win 4000 times at the Fight Club.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 8. Standalone -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Standalone</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">VIP</td><td class="desc" data-en="Purchase the VIP Gamepass." data-ru="Купить VIP Gamepass.">Purchase the VIP Gamepass.</td></tr>
+            <tr><td class="title-name">Biohazard</td><td class="desc" data-en="Become a zombie." data-ru="Стать зомби.">Become a zombie.</td></tr>
+            <tr><td class="title-name">Survivor</td><td class="desc" data-en="Escape during an Infection Event while not infected." data-ru="Сбежать во время события Infection, не будучи заражённым.">Escape during an Infection Event while not infected.</td></tr>
+            <tr><td class="title-name">Cat Whisperer</td><td class="desc" data-en="Find and click every cat on the map. (requires Auxiliary Staff)" data-ru="Найти и кликнуть по каждой кошке на карте. (требуется Auxiliary Staff)">Find and click every cat on the map. (requires Auxiliary Staff)</td></tr>
+            <tr><td class="title-name">Demolitionist</td><td class="desc" data-en="Escape during a Bomb Frenzy event." data-ru="Сбежать во время события Bomb Frenzy.">Escape during a Bomb Frenzy event.</td></tr>
+            <tr><td class="title-name">Anomalous</td><td class="desc" data-en="Escape as an Anomaly during an Anomaly event." data-ru="Сбежать в качестве аномалии во время события Anomaly.">Escape as an Anomaly during an Anomaly event.</td></tr>
+            <tr><td class="title-name">Remnant</td><td class="desc" data-en="Escape as a Patient during an Anomaly event." data-ru="Сбежать в качестве пациента во время события Anomaly.">Escape as a Patient during an Anomaly event.</td></tr>
+            <tr><td class="title-name">Timekeeper</td><td class="desc" data-en="Defend the asylum as a Staff during an Anomaly event." data-ru="Защитить убежище в качестве сотрудника во время события Anomaly.">Defend the asylum as a Staff during an Anomaly event.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 9. Painting Canvases -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Painting Canvases</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Painter</td><td class="desc" data-en="Paint 20 times." data-ru="Нарисовать 20 раз.">Paint 20 times.</td></tr>
+            <tr><td class="title-name">Artist</td><td class="desc" data-en="Paint 40 times." data-ru="Нарисовать 40 раз.">Paint 40 times.</td></tr>
+            <tr><td class="title-name">Visionary</td><td class="desc" data-en="Paint 100 times." data-ru="Нарисовать 100 раз.">Paint 100 times.</td></tr>
+            <tr><td class="title-name">Artisan</td><td class="desc" data-en="Paint 500 times." data-ru="Нарисовать 500 раз.">Paint 500 times.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 10. Weekly Quests -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Weekly Quests</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">???</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+            <tr><td class="title-name">Demon</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+            <tr><td class="title-name">Poseidon</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+            <tr><td class="title-name">Samurai</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+            <tr><td class="title-name">Sorcerer</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+            <tr><td class="title-name">Mangomaniac</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly missions." data-ru="Сейчас недоступно, ранее можно было получить через еженедельные миссии.">Currently Unobtainable, previously obtainable via weekly missions.</td></tr>
+            <tr><td class="title-name">Viridian</td><td class="desc" data-en="Currently Unobtainable, previously obtainable via weekly gacha." data-ru="Сейчас недоступно, ранее можно было получить через еженедельную гачу.">Currently Unobtainable, previously obtainable via weekly gacha.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 11. Event Titles -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Event Titles</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Pink beret</td><td class="desc" data-en="Obtained through the 2025 Valentines Day event." data-ru="Получено на событии Дня святого Валентина 2025.">Obtained through the 2025 Valentines Day event.</td></tr>
+            <tr><td class="title-name">Clown</td><td class="desc" data-en="Obtained through the 2025 April Fools event." data-ru="Получено на событии Дня смеха 2025.">Obtained through the 2025 April Fools event.</td></tr>
+            <tr><td class="title-name">Bunny</td><td class="desc" data-en="Obtained through the 2025 Easter event." data-ru="Получено на событии Пасхи 2025.">Obtained through the 2025 Easter event.</td></tr>
+            <tr><td class="title-name">Lovely</td><td class="desc" data-en="Obtained through the 2026 Valentines Day event." data-ru="Получено на событии Дня святого Валентина 2026.">Obtained through the 2026 Valentines Day event.</td></tr>
+            <tr><td class="title-name">Laughable</td><td class="desc" data-en="Obtained through the 2026 April Fools event." data-ru="Получено на событии Дня смеха 2026.">Obtained through the 2026 April Fools event.</td></tr>
+            <tr><td class="title-name">Patriot</td><td class="desc" data-en="Obtained through the 2026 4th of July event." data-ru="Получено на событии 4 июля 2026.">Obtained through the 2026 4th of July event.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 12. Shopping (Перемещено выше Retiring) -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Shopping</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Shopper</td><td class="desc" data-en="Buy 100 items in the store." data-ru="Купить 100 предметов в магазине.">Buy 100 items in the store.</td></tr>
+            <tr><td class="title-name">Patron</td><td class="desc" data-en="Buy 250 items in the store." data-ru="Купить 250 предметов в магазине.">Buy 250 items in the store.</td></tr>
+            <tr><td class="title-name">Stockpiler</td><td class="desc" data-en="Buy 500 items in the store." data-ru="Купить 500 предметов в магазине.">Buy 500 items in the store.</td></tr>
+            <tr><td class="title-name">Loaded</td><td class="desc" data-en="Buy 1000 items in the store." data-ru="Купить 1000 предметов в магазине.">Buy 1000 items in the store.</td></tr>
+            <tr><td class="title-name">Overspender</td><td class="desc" data-en="Buy 2500 items in the store." data-ru="Купить 2500 предметов в магазине.">Buy 2500 items in the store.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 13. Times Boxed (Перемещено выше Retiring) -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Times Boxed</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="title-name">Confined</td><td class="desc" data-en="100 boxed times." data-ru="Быть помещённым в бокс 100 раз.">100 boxed times.</td></tr>
+            <tr><td class="title-name">Repetitive</td><td class="desc" data-en="250 boxed times." data-ru="Быть помещённым в бокс 250 раз.">250 boxed times.</td></tr>
+            <tr><td class="title-name">Persistent</td><td class="desc" data-en="500 boxed times." data-ru="Быть помещённым в бокс 500 раз.">500 boxed times.</td></tr>
+            <tr><td class="title-name">Troublemaker</td><td class="desc" data-en="1000 boxed times." data-ru="Быть помещённым в бокс 1000 раз.">1000 boxed times.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- 14. Retiring (Теперь в самом низу) -->
+    <div class="category">
+      <div class="category-header" onclick="toggle(this)">
+        <h2>Retiring</h2>
+        <span class="arrow">▼</span>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Title</th><th>How to Obtain</th></tr>
+          </thead>
+          <tbody>
+            <!-- Patient -->
+            <tr class="team-group-header"><td colspan="2">Patient</td></tr>
+            <tr><td class="title-name">Kingpin</td><td class="desc" data-en="Retirement I on Patient" data-ru="Retirement I на Patient">Retirement I on Patient</td></tr>
+            <tr><td class="title-name">Unstoppable Force</td><td class="desc" data-en="Retirement II on Patient" data-ru="Retirement II на Patient">Retirement II on Patient</td></tr>
+            <tr><td class="title-name">Asylum Apex</td><td class="desc" data-en="Retirement III on Patient" data-ru="Retirement III на Patient">Retirement III on Patient</td></tr>
+            <tr><td class="title-name">God Father</td><td class="desc" data-en="Retirement IV on Patient" data-ru="Retirement IV на Patient">Retirement IV on Patient</td></tr>
+            <tr><td class="title-name">Lord of Wolves</td><td class="desc" data-en="Retirement V on Patient" data-ru="Retirement V на Patient">Retirement V on Patient</td></tr>
+            
+            <!-- Orderly -->
+            <tr class="team-group-header"><td colspan="2">Orderly</td></tr>
+            <tr><td class="title-name">Judge</td><td class="desc" data-en="Retirement I on Orderly" data-ru="Retirement I на Orderly">Retirement I on Orderly</td></tr>
+            <tr><td class="title-name">Keeper of Peace</td><td class="desc" data-en="Retirement II on Orderly" data-ru="Retirement II на Orderly">Retirement II on Orderly</td></tr>
+            <tr><td class="title-name">Asylum Hero</td><td class="desc" data-en="Retirement III on Orderly" data-ru="Retirement III на Orderly">Retirement III on Orderly</td></tr>
+            <tr><td class="title-name">Shock Troop</td><td class="desc" data-en="Retirement IV on Orderly" data-ru="Retirement IV на Orderly">Retirement IV on Orderly</td></tr>
+            <tr><td class="title-name">Praetorian</td><td class="desc" data-en="Retirement V on Orderly" data-ru="Retirement V на Orderly">Retirement V on Orderly</td></tr>
+
+            <!-- Facility Director -->
+            <tr class="team-group-header"><td colspan="2">Facility Director</td></tr>
+            <tr><td class="title-name">Overseer</td><td class="desc" data-en="Retirement I on Facility Director" data-ru="Retirement I на Facility Director">Retirement I on Facility Director</td></tr>
+            <tr><td class="title-name">Facilitator</td><td class="desc" data-en="Retirement II on Facility Director" data-ru="Retirement II на Facility Director">Retirement II on Facility Director</td></tr>
+            <tr><td class="title-name">Asylum Lord</td><td class="desc" data-en="Retirement III on Facility Director" data-ru="Retirement III на Facility Director">Retirement III on Facility Director</td></tr>
+            <tr><td class="title-name">Tyrant</td><td class="desc" data-en="Retirement IV on Facility Director" data-ru="Retirement IV на Facility Director">Retirement IV on Facility Director</td></tr>
+            <tr><td class="title-name">All-seeing</td><td class="desc" data-en="Retirement V on Facility Director" data-ru="Retirement V на Facility Director">Retirement V on Facility Director</td></tr>
+
+            <!-- Elite Protection Team -->
+            <tr class="team-group-header"><td colspan="2">Elite Protection Team</td></tr>
+            <tr><td class="title-name">Vanguard</td><td class="desc" data-en="Retirement I on Elite Protection Unit" data-ru="Retirement I на Elite Protection Unit">Retirement I on Elite Protection Unit</td></tr>
+            <tr><td class="title-name">Immovable Object</td><td class="desc" data-en="Retirement II on Elite Protection Unit" data-ru="Retirement II на Elite Protection Unit">Retirement II on Elite Protection Unit</td></tr>
+            <tr><td class="title-name">Commando</td><td class="desc" data-en="Retirement III on Elite Protection Unit" data-ru="Retirement III на Elite Protection Unit">Retirement III on Elite Protection Unit</td></tr>
+            <tr><td class="title-name">Exterminator</td><td class="desc" data-en="Retirement IV on Elite Protection Unit" data-ru="Retirement IV на Elite Protection Unit">Retirement IV on Elite Protection Unit</td></tr>
+            <tr><td class="title-name">The Terminator</td><td class="desc" data-en="Retirement V on Elite Protection Unit" data-ru="Retirement V на Elite Protection Unit">Retirement V on Elite Protection Unit</td></tr>
+
+            <!-- Medical -->
+            <tr class="team-group-header"><td colspan="2">Medical</td></tr>
+            <tr><td class="title-name">Saint</td><td class="desc" data-en="Retirement I on Medical" data-ru="Retirement I на Medical">Retirement I on Medical</td></tr>
+            <tr><td class="title-name">Disease Control</td><td class="desc" data-en="Retirement II on Medical" data-ru="Retirement II на Medical">Retirement II on Medical</td></tr>
+            <tr><td class="title-name">Mad Scientist</td><td class="desc" data-en="Retirement III on Medical" data-ru="Retirement III на Medical">Retirement III on Medical</td></tr>
+            <tr><td class="title-name">Witch Doctor</td><td class="desc" data-en="Retirement IV on Medical" data-ru="Retirement IV на Medical">Retirement IV on Medical</td></tr>
+            <tr><td class="title-name">Maximus Medicus</td><td class="desc" data-en="Retirement V on Medical" data-ru="Retirement V на Medical">Retirement V on Medical</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    function toggle(header) {
+      const tableWrap = header.nextElementSibling;
+      const isHidden = tableWrap.style.display === 'none';
+      tableWrap.style.display = isHidden ? 'block' : 'none';
+      header.classList.toggle('collapsed', !isHidden);
+    }
+
+    let isRussian = false;
+    const translateBtn = document.getElementById('translate-btn');
+
+    translateBtn.addEventListener('click', () => {
+      isRussian = !isRussian;
+      
+      // Перевод описаний в таблицах
+      const descriptions = document.querySelectorAll('.desc');
+      descriptions.forEach(el => {
+        if (isRussian) {
+          el.textContent = el.getAttribute('data-ru');
+        } else {
+          el.textContent = el.getAttribute('data-en');
+        }
+      });
+
+      // Перевод подзаголовка в шапке
+      const mainSubtitle = document.getElementById('main-subtitle');
+      mainSubtitle.textContent = isRussian ? mainSubtitle.getAttribute('data-ru') : mainSubtitle.getAttribute('data-en');
+
+      // Перевод блока с пояснением
+      const explainerTitle = document.getElementById('explainer-title');
+      explainerTitle.textContent = isRussian ? explainerTitle.getAttribute('data-ru') : explainerTitle.getAttribute('data-en');
+
+      const explainerText1 = document.getElementById('explainer-text-1');
+      explainerText1.textContent = isRussian ? explainerText1.getAttribute('data-ru') : explainerText1.getAttribute('data-en');
+
+      const explainerText2 = document.getElementById('explainer-text-2');
+      explainerText2.textContent = isRussian ? explainerText2.getAttribute('data-ru') : explainerText2.getAttribute('data-en');
+
+      const explainerText3 = document.getElementById('explainer-text-3');
+      explainerText3.textContent = isRussian ? explainerText3.getAttribute('data-ru') : explainerText3.getAttribute('data-en');
+
+      translateBtn.textContent = isRussian ? 'EN' : 'RU';
+    });
+  </script>
+</body>
+</html>
